@@ -1,0 +1,183 @@
+/* static/css/style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&family=Pacifico&display=swap');
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; 
+}
+
+/* Barra Lateral (Sidebar) */
+#sidebar {
+    /* A transição de largura é aplicada pelo Tailwind (transition-all duration-300) */
+    box-shadow: 3px 0px 15px -3px rgba(0,0,0,0.05); /* Sombra mais sutil para a sidebar */
+}
+.dark #sidebar {
+    box-shadow: 3px 0px 15px -3px rgba(0,0,0,0.2);
+}
+
+#folderList .folder-item {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.15s ease-out, box-shadow 0.2s ease-out;
+    cursor: pointer;
+    /* Adiciona um leve preenchimento para melhor área de clique */
+    /* padding: 0.625rem 0.75rem; /* p-2.5 */
+}
+#folderList .folder-item:hover {
+    transform: translateX(4px);
+    /* box-shadow: inset 3px 0 0 0 #0ea5e9; /* sky-500 - Borda interna elegante no hover */
+}
+.dark #folderList .folder-item:hover {
+    /* box-shadow: inset 3px 0 0 0 #38bdf8; /* sky-400 */
+}
+#folderList .folder-item.active {
+    /* Estilos de item ativo são do Tailwind */
+    /* Exemplo de borda lateral para destaque */
+    /* border-left: 4px solid #0ea5e9; /* sky-500 */
+    /* padding-left: calc(0.625rem - 4px); /* Ajusta padding */
+}
+.dark #folderList .folder-item.active {
+    /* border-left-color: #38bdf8; /* sky-400 */
+}
+#folderList .folder-item i {
+    transition: color 0.2s ease-in-out;
+}
+
+/* Conteúdo Principal ao lado da Sidebar */
+#mainContent {
+    /* A margem esquerda é controlada pelo JS/Tailwind (lg:ml-64 ou lg:ml-20) */
+    /* transition: margin-left 0.3s ease-in-out; /* Já no HTML */
+}
+
+
+#notesContainer {
+    min-height: 150px; 
+    padding-bottom: 1rem; 
+    /* display: flex; /* Para animações de lista, pode ser útil com bibliotecas */
+    /* flex-wrap: wrap; */
+    /* align-items: flex-start; */
+}
+
+.note-card {
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), /* Curva de easing mais suave */
+                opacity 0.3s ease-out,
+                border-color 0.3s ease-out; 
+    will-change: transform, box-shadow, opacity, border-color; 
+    border: 3px solid transparent; /* Aumenta a espessura da borda base para destaque do fixado */
+}
+html.light .note-card {
+    /* box-shadow: 0 4px 10px -2px rgba(0,0,0,0.06), 0 2px 6px -3px rgba(0,0,0,0.04); */
+}
+html.dark .note-card {
+    /* box-shadow: 0 4px 10px -2px rgba(0,0,0,0.2), 0 2px 6px -3px rgba(0,0,0,0.15); */
+}
+
+
+.note-card:hover:not(.dragging) { 
+    transform: translateY(-6px) scale(1.03);
+    /* box-shadow já é tratado pelo Tailwind (shadow-xl e hover:shadow-2xl) */
+}
+
+/* Estilo visual para quando a nota está fixada */
+.note-card.pinned-note-visual {
+    /* A cor da borda é definida pelo JS para melhor contraste com a cor do post-it */
+    /* Adiciona uma sombra interna sutil para dar profundidade ao "fixado" */
+    /* As variáveis CSS são definidas no JS */
+    box-shadow: inset 0 0 8px var(--pin-highlight-color, rgba(245, 158, 11, 0.5)), 
+                0 10px 20px -5px rgba(0,0,0,0.1); 
+}
+.dark .note-card.pinned-note-visual {
+    box-shadow: inset 0 0 8px var(--pin-highlight-color-dark, rgba(250, 204, 21, 0.6)),
+                0 10px 20px -5px rgba(0,0,0,0.15);
+}
+
+
+.pin-note-btn {
+    transition: color 0.2s ease-in-out, transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+}
+.pin-note-btn i.fa-thumbtack {
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.note-card.pinned-note-visual .pin-note-btn i.fa-thumbtack {
+    transform: rotate(0deg) scale(1.15); /* Ícone reto e maior quando fixado */
+    /* A cor e opacidade são definidas no JS */
+}
+.note-card:not(.pinned-note-visual) .pin-note-btn:hover i.fa-thumbtack {
+    transform: scale(1.25) rotate(-10deg); 
+}
+
+
+.note-actions .action-btn, .note-integrations .integration-btn {
+    background: none; border: none; cursor: pointer; padding: 0.35rem; 
+    transition: color 0.15s ease-in-out, transform 0.2s ease-out, opacity 0.15s ease-in-out;
+}
+.note-actions .action-btn:hover, .note-integrations .integration-btn:hover:not(:disabled) {
+    transform: scale(1.2); opacity: 1 !important; 
+}
+
+input::placeholder, textarea::placeholder { font-style: italic; font-size: 0.925em; opacity: 0.7; }
+.dark input::placeholder, .dark textarea::placeholder { opacity: 0.6; }
+
+#searchInput {
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    font-size: 1rem; 
+}
+.dark #searchInput:focus { box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3); border-color: #38bdf8; }
+html.light #searchInput:focus { box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25); border-color: #0ea5e9; }
+
+.note-card.dragging {
+    opacity: 0.5 !important; 
+    border-style: dashed !important; 
+    transform: scale(0.98) rotate(1deg) !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    cursor: grabbing !important;
+}
+
+.drag-over-placeholder {
+    border-radius: 0.75rem; /* rounded-xl */
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    /* O tamanho é definido pelo JS */
+}
+
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-5 { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+
+#noteModal, #folderModal { overflow: hidden; } 
+
+#noteFont, #noteFolder {
+    background-size: 1.25rem; 
+    background-position: right 0.75rem center;
+}
+.dark #noteFont, .dark #noteFolder {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%2394a3b8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E') !important; 
+}
+
+/* Animações para Adicionar/Remover Notas */
+@keyframes fadeInScaleUp {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeOutScaleDown {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(20px) scale(0.95); }
+}
+
+.note-card-entering { 
+    animation: fadeInScaleUp 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; 
+}
+.note-card-leaving { 
+    animation: fadeOutScaleDown 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards; 
+    pointer-events: none; 
+}
+
+
+
+
+
+
+
+
+
+

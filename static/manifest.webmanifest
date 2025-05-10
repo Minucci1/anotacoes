@@ -1,0 +1,62 @@
+{
+    "name": "Anotações",
+    "short_name": "Anotações",
+    "description": "Um aplicativo simples para as suas anotações e ideias.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#0ea5e9",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "/static/icons/icon-72x72.png",
+        "type": "image/png",
+        "sizes": "72x72",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/static/icons/icon-96x96.png",
+        "type": "image/png",
+        "sizes": "96x96",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/static/icons/icon-128x128.png",
+        "type": "image/png",
+        "sizes": "128x128",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/static/icons/icon-144x144.png",
+        "type": "image/png",
+        "sizes": "144x144",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/static/icons/icon-152x152.png",
+        "type": "image/png",
+        "sizes": "152x152",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/static/icons/icon-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/static/icons/icon-384x384.png",
+        "type": "image/png",
+        "sizes": "384x384",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/static/icons/icon-512x512.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "any maskable"
+      }
+    ]
+  }
+  
+  
